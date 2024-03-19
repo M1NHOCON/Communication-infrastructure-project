@@ -1,16 +1,8 @@
-**Membros do grupo**:
+# Communication-infrastructure-project
 
-Johnny Cleiton `<jcfl2>`
+#Portuguese
 
-Romulo Artur `<raasa>`
-
-Samuel Nunes de Andrade `<sna2>`
-
-Sara Nicoly `<snfl>`
-
-Vinicius dos Santos Felix `<vsf2>`
-
-Vittor Matheus `<vmmc3>`
+Este projeto, da disciplina de infraestrutura de comunicação, trata-se de um sistema de reservas de salas. todo o projeto foi desenvolvido em python utilizando sockets, UDP (como protocolo de transporte) implementado juntamente com o RDT 3.0 (para assegurar que os dados vao ser transmitidos corretamente).
 
 **Servidor**:
 
@@ -46,3 +38,41 @@ Vittor Matheus `<vmmc3>`
 7 - Para cancelar uma reserva, utilize o comando `cancelar <num_sala> <dia> <hora>`, certifique-se de que a reserva realmente foi feita.
 8 - Para verificar a disponibiidade de uma sala em um determinado dia, utilize o comando `check <num_sala> <dia>`.
 9 - Para sair do servidor, use o comando `bye`.
+
+#English
+
+This project, from the Communication Infrastructure course, is a room reservation system. The entire project was developed in Python using sockets, UDP (as the transport protocol) implemented together with RDT 3.0 (to ensure that data is transmitted correctly).
+
+**Server**:
+
+1. **Server Initialization**: The server is initialized at a specific IP address (`127.0.0.1`) and port `12345`. A UDP socket is created and bound to the server's address.
+2. **Sending and Receiving Function with RDT 3.0**: The `send_rdt()` and `receive_rdt()` functions are responsible for reliable communication between client and server using the RDT 3.0 protocol. They ensure that messages are delivered correctly and in the correct order.
+3. **Client Management**: Connected clients are stored in a list of clients, which contains information such as name, IP:PORT address, and client socket.
+4. **Reservation Management**: Room reservations are stored in a list of reservations. The `reservar_sala()` function allows clients to reserve rooms for specific days and times, while the `cancelar_reserva()` function allows clients to cancel their reservations.
+5. **Listing Connected Users**: The `listar_usuarios()` function allows clients to see a list of all users connected to the server.
+6. **Checking Reservation Availability**: The `check_reserva()` function allows clients to check the availability of time slots for a particular room on a specific day.
+7. **Server's Main Loop**: The server remains in an infinite loop, receiving messages from clients, processing them, and responding as necessary.
+8. **Client Connection**: When a client connects to the server, it sends a message informing its username.
+9. **Client Disconnection**: When a client wants to disconnect from the server, it sends a message with the "bye" command, and the server removes the client from the list of clients and informs other clients about their departure.
+
+**Client**:
+
+1. **Connecting to the Server**: Clients can connect to the server by typing the command `connect as <username>`. Once connected, they can interact with the reservation system.
+2. **Room Reservation**: Clients can reserve a room by specifying the room number, day, and desired time using the command `reservar <room_num> <day> <time>`.
+3. **Canceling Reservations**: Clients can cancel a specific reservation using the command `cancelar <room_num> <day> <time>`.
+4. **Checking Room Availability**: Clients can check the availability of a room on a particular day using the command `check <room_num> <day>`.
+5. **Listing Connected Users**: Clients can view a list of all users connected to the server by typing the command `list`.
+6. **Help Menu**: Clients can view a help menu by typing the commands `help` or `menu`.
+7. **Terminal Clearing**: Clients can clear the terminal by typing the command `cls`.
+
+**How to use the program?**
+
+1 - First, initialize the server in the terminal (server.py)
+2 - Initialize the clients (client.py)
+3 - If you have any questions about using the program, use the `help` or `menu` command
+4 - To connect to the server, use the command `connect as <username>`
+5 - To list the users currently connected, use the command `list`
+6 - To make a reservation, use the command `reservar <room_num> <day> <time>`, make sure the day is between Monday and Friday, and the time is between 8am and 5pm
+7 - To cancel a reservation, use the command `cancelar <room_num> <day> <time>`, make sure the reservation was actually made.
+8 - To check the availability of a room on a specific day, use the command `check <room_num> <day>`.
+9 - To disconnect from the server, use the command `bye`.
